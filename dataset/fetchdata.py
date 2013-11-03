@@ -34,14 +34,15 @@ rating_critics = dict()
 for line in rating_list:
     userid = int(line[0])
     jokeid = int(line[1])
-    rating = float(line[2])
-    
+    rating = round(float(line[2]))/5+3
+
     if rating_critics.has_key(userid):
         rating_critics[userid][jokeid] = rating
     else:
         rating_critics[userid] = {}
         rating_critics[userid][jokeid] = rating
 
+print rating_critics
 
 # Build the Item Comparison Dataset for item-based recommendation       
 similarjokes = recommendations.calculateSimilarItems(rating_critics, n=10)
@@ -51,15 +52,15 @@ print similarjokes
 
 # Read joke data from jester_ratings.dat
 
-with open('jester_items.dat','rU') as joke_data:
-    joke_set = dict()
-    joke_list = joke_data.read().split('\n\n')
-    for joke in joke_list[0:150]:
-        joke = joke.replace('\n','')
-        result = re.search(r'(\d*?):(.*)', joke)
-        joke_set[int(result.group(1))] = result.group(2)
-        
-print joke_set 
+# with open('jester_items.dat','rU') as joke_data:
+#     joke_set = dict()
+#     joke_list = joke_data.read().split('\n\n')
+#     for joke in joke_list[0:150]:
+#         joke = joke.replace('\n','')
+#         result = re.search(r'(\d*?):(.*)', joke)
+#         joke_set[int(result.group(1))] = result.group(2)
+#         
+# print joke_set 
       
       
       
