@@ -3,10 +3,19 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<title>Joke Butler</title>
-	<link rel="stylesheet" href="/statics/index.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="/static/css/index.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
 </head>
 <body onload="">
-	
+	<div id="container">
+		<h1>Joke Butler</h1>
+		<ol class="jokes">
+			{% autoescape false %}
+			{% for joke in randomjokes%}
+				<li>{{ randomjokes[joke] }}</li><br/><br/>
+			{% endfor%}
+			{% endautoescape %}
+		</ol>
+	</div>
 </body>
 </html>

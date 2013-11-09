@@ -1,4 +1,4 @@
-import recommendations, jokesim
+import recommendations, jokesim, jokes
 
 # The key of new user data must be in the following list, which repsents all the keys in the sim_critics
 
@@ -16,3 +16,5 @@ newusers = {
 
 print len(recommendations.getRecommendedItems(newusers, jokesim.sim_critics, 'user1'))
 print recommendations.getRecommendedItems(newusers, jokesim.sim_critics, 'user1')
+
+print jokes.jokes[5]
