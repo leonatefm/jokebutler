@@ -3,19 +3,31 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<title>Joke Butler</title>
+	<link href='http://fonts.googleapis.com/css?family=Jolly+Lodger&effect=shadow-multiple' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/static/css/index.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
 </head>
 <body onload="">
 	<div id="container">
-		<h1>Joke Butler</h1>
-		<ol class="jokes">
+		<h1 class="font-effect-shadow-multiple">Joke Butler</h1>
+		<div class="round">
+			<h2>Round 0: On board ratings to get recommendations</h2>
+			<div id="progress"><div class="bar"></div><h3>0/5</h3></div>
+		</div>
+		<ul class="jokes">
 			{% autoescape false %}
 			{% for joke in randomjokes%}
-				<li>{{ randomjokes[joke] }}</li><br/><br/>
+				<li joke={{joke}}>{{ randomjokes[joke] }}
+					<ul class="rates"><li class="r1"></li><li class="r2"></li><li class="r3"></li><li class="r4"></li><li class="r5"></li></ul>
+				</li>
 			{% endfor%}
 			{% endautoescape %}
-		</ol>
+		</ul>
 	</div>
+	<script type="text/javascript" charset="utf-8">
+		jokes_count = {{ jokescount }};
+	</script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/static/js/main.js"></script>
 </body>
 </html>

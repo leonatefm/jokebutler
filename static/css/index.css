@@ -8,21 +8,129 @@
 body{
 	width:100%;
 	height:100%;
+	background-color:#f6f6f6;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:18px;
 }
 
 h1{
-	font-size:46px;
-	line-height:80px;
+	font-size:108px;
+	line-height:180px;
+	text-align:center;
+	font-family: 'Jolly Lodger', cursive;
+}
+h2{
+	font-size:24px;
+	line-height:60px;
+	text-align:center;
+}
+h3{
+	font-weight:normal;
+	text-align:center;
+	line-height:38px;
 }
 
 #container{
-	width:960px;
+	width:900px;
+	height:auto;
 	margin:auto;
+	overflow:hidden;
+	padding-bottom:40px;
+}
+
+.round{
+	width:100%;
+}
+
+#progress{
+	width:50%;
+	height:25px;
+	margin:0 auto 60px;
+	
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	-o-border-radius: 8px;
+	-ms-border-radius: 8px;
+	border-radius: 8px;
+	
+	border: 2px solid grey;
+}
+#progress .bar{
+	width:0%;
+	height:100%;
+	background-color:#333333;
+	
+	-webkit-transition: all 500ms ease-in-out;
+	-moz-transition: all 500ms ease-in-out;
+	-o-transition: all 500ms ease-in-out;
+	-ms-transition: all 500ms ease-in-out;
+	transition: all 500ms ease-in-out;
+}
+
+ul{
+	list-style-type:none;
+}
+
+.jokes{
+	width:199999px;
+	height:auto;
+	overflow:auto;
+	position:relative;
+	
+	-webkit-transition: all 500ms ease-in-out;
+	-moz-transition: all 500ms ease-in-out;
+	-o-transition: all 500ms ease-in-out;
+	-ms-transition: all 500ms ease-in-out;
+	transition: all 500ms ease-in-out;
+}
+
+.jokes li{
+	width:900px;
+	height:auto;
+	float:left;
+}
+
+.rates{
+	width: 400px;
+	height:60px;
+	margin: 40px auto 0 auto;
+}
+
+.rates li{
+	width:60px;
+	height:60px;
+	float:left;
+	margin:0 10px;
+	background:url(../img/smile.png) no-repeat;
+	background-size:300px 60px;
+	cursor:pointer;
+}
+.rates li:hover{
+	
+}
+
+.rates li.r1{
+	background-position:0px 0px;
+}
+.rates li.r2{
+	background-position:-60px 0px;
+}
+.rates li.r3{
+	background-position:-120px 0px;
+}
+.rates li.r4{
+	background-position:-180px 0px;
+}
+.rates li.r5{
+	background-position:-240px 0px;
 }
 
 @media screen and (max-width:1000px){
 	#container{
-		width:96%;
+		width:90%;
+	}
+	.jokes li{
+		width:;
 	}
 }
 
