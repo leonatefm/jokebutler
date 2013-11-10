@@ -36,6 +36,7 @@ def getRandomJokes(number):
     return random_jokes
     
 def getRecommendations(ratings, number):
+    logging.info(ratings)
     user_rating = dict()
     for key in ratings:
         user_rating[int(key)] = ratings[key]
