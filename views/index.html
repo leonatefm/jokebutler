@@ -5,31 +5,128 @@
 	<meta name="keywords" content="Joke Butler, Joke, Jokes, recommender system, recommendation, social navifation" />
 	<meta name="description" content="F13 SI694 Project 2 - Recommender System - Joke Butler" />
 	<title>Joke Butler - Jokes Recommender System</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<link href='http://fonts.googleapis.com/css?family=Jolly+Lodger&effect=shadow-multiple' rel='stylesheet' type='text/css'>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" href="/static/css/index.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
 </head>
 <body onload="">
+	
+	<div id="fb-root"></div>
+	<script>
+	  // Additional JS functions here
+	  window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '701530443205317', // App ID
+	      channelUrl : '//localhost:8888/static/channel.html', // Channel File
+	      status     : true, // check login status
+	      cookie     : true, // enable cookies to allow the server to access the session
+	      xfbml      : true  // parse XFBML
+	    });
+
+	    // Additional init code here
+
+	  };
+
+	  // Load the SDK asynchronously
+	  (function(d, s, id){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "//connect.facebook.net/en_US/all.js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+	 
+	 
+	 function fb_login(){
+		 FB.login(function(response) {
+	 		 if (response.authResponse){
+				 FB.api('/me', function(response) {
+	 			 user_name = response.name;
+				 user_id = response.id;
+				 
+				 $('.account').html('<a href="#" title="logout" onclick="fb_logout(); return false"><i class="fa fa-sign-out"></i><h5>'+ user_name +'<h5></a>');
+				 current_title = $('.round h2').html();
+				 $('.round h2').html('Loading personal recommendations...')
+					
+					$.ajax({
+						type:'POST',
+						url:'/checkuser',
+						data: {userid:user_id,}
+					}).done(function(data){
+						if(data == 'Yes'){
+							window.location.reload();
+						}else{
+							setTimeout(function(){
+								$('.round h2').html('No user record found, keep rating to rock.');
+								setTimeout(function(){
+									$('.round h2').html(current_title);
+								}, 1000);
+							}, 1000);
+						}
+					});
+				 
+	 			 });
+	 		    }else{
+	 		      console.log('User cancelled login or did not fully authorize.');
+	 		    }
+		 });
+	 }
+	 
+	 function fb_logout(){
+		 FB.logout(function(response) {
+			 console.log("logout");
+			 user_id = null;
+			 $('.account').html('<a href="#" title="login" onclick="fb_login(); return false"><i class="fa fa-facebook-square"></i><h5>FB Login</h5></a>');
+		 });
+	 }
+	   
+	</script>
+	
 	<div id="container">
+		
 		<h1 class="font-effect-shadow-multiple">Joke Butler</h1>
 		<div class="round">
-			<h2>Round 0: On board ratings to get recommendations</h2>
+			{% if round %}
+			<h2>Round {{ round }}: Top 5 jokes recommended</h2>
+			{% else %}
+			<h2>Round 0: Rate 5 jokes to get recommendations</h2>
+			{% endif %}
 			<div id="progress"><div class="bar"></div><h3>0 / 5</h3></div>
 		</div>
-		<ul class="jokes">
+		<ul class="jokes animation">
 			{% autoescape false %}
-			{% for joke in randomjokes%}
-				<li joke={{joke}}>{{ randomjokes[joke] }}
-					<ul class="rates"><li class="r1"></li><li class="r2"></li><li class="r3"></li><li class="r4"></li><li class="r5"></li></ul>
+			{% for joke in jokes%}
+				<li joke={{joke[0]}}>{{ joke[1] }}
+					<ul class="rates"><li class="r1"><h4>UCK!</h4></li><li class="r2"></li><li class="r3"><h4>Meh.</h4></li><li class="r4"></li><li class="r5"><h4>LMAO</h4></li></ul>
 				</li>
 			{% endfor%}
 			{% endautoescape %}
 		</ul>
+		
+		<div class="intro"><i class="fa fa-question-circle"></i></div>
+		<div class="account">
+			{% if user %}
+			<a href="#" title="logout" onclick="fb_logout(); return false"><i class="fa fa-sign-out"></i><h5>{{ user['name'] }}<h5></a>
+			<script type="text/javascript" charset="utf-8">user_id = {{ user['id'] }};</script>
+			{% else %}
+			<a href="#" title="login" onclick="fb_login(); return false"><i class="fa fa-facebook-square"></i><h5>FB Login</h5></a>
+			<script type="text/javascript" charset="utf-8">user_id = null;</script>
+			{% endif %}
+		</div>
 	</div>
+	
 	<script type="text/javascript" charset="utf-8">
 		jokes_count = {{ jokescount }};
+		ratings = {};
+		{% if ratings %}
+			{% for rating in ratings %}
+			ratings[{{ rating }}] = {{ ratings[rating] }}
+			{% endfor %}
+			console.log(ratings);
+		{% endif%}
 	</script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="/static/js/main.js"></script>
 </body>
 </html>
