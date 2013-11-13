@@ -131,6 +131,10 @@ ul{
 	background-position:-240px 0px;
 }
 
+.ratingText h2 { 
+	background-position: -60px -40px;
+}
+
 @media screen and (max-width:1000px){
 	#container{
 		width:90%;
