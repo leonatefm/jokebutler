@@ -72,4 +72,17 @@ $(document).ready(function(){
 	}
 	
 	$('.rates li').on('click', rating_event);
+		
+	$('.intro, .goback').on('click', function(){
+		$('.round').toggle('slow');
+		$('.jokes').toggle('slow');
+		$('.content').toggle('slow');
+	});
+	
+	if(!user_id){
+		$('.round').toggle();
+		$('.jokes').toggle();
+		$('.content').toggle();
+	}
+	
 });

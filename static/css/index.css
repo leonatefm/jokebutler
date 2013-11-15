@@ -191,6 +191,28 @@ ul{
 	margin-right:5px
 }
 
+.content{
+	width:80%;
+	height:auto;
+	margin:auto;
+	display:none;
+}
+.content .goback{
+	width:100px;
+	height:130px;
+	margin: 40px auto 0;
+	background:url(../img/smile.png) no-repeat;
+	background-position:-400px 0px;
+	cursor:pointer;
+}
+.content h4{
+	line-height:150%;
+	font-size:18px;
+	font-weight:bold;
+	padding-top:103px;
+	color:#333333;
+}
+
 /*.quote{
 	width:auto;
 	height:auto;
