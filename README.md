@@ -1,17 +1,18 @@
 jokebutler
 ==========
 
-## System name: 
+**System name**: 
 JokeButler
+
 **Link**: http://jokesbutler.appspot.com/
 
-Instructions to use:
+**Instructions to use**:
 
 Log-in with your FaceBook in the top-right corner in order to keep a history of what you’ve rated.
 If this is your first time to the app, you’ll start with “Round 0”. Here, you will be given 5 jokes to rate so that we can assess your preferences. In order to rate a joke, simply use the five faces below to indicate your reaction to the joke. 
 After you’ve given us 5 ratings, our system calculates which jokes it recommends to you.The system will then progress through rounds where you’re given 5 new jokes each time. After this initial round 0, all the jokes in the subsequent rounds are selected and recommended based on your prior ratings. You should also not see any jokes you’ve seen before
 
-Writeup:
+**Writeup**:
 
 Jokes have been a part of human history for as long as we’ve known it. The power of laughter and humor has been well documented, and people around the world, from different nations and of different ages, enjoy a good joke. Due to this, we were excited to find a rich data-set of joke ratings when we were exploring ideas for our recommendations project, and as a result, we present to you the Joke Butler.
 
